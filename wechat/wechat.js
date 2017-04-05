@@ -8,7 +8,7 @@ var prefix = 'https://api.weixin.qq.com/cgi-bin/'
 
 var api = {
     accessToken: prefix+'token?grant_type=client_credential',
-    upload: prefix+ 'cgi-bin/media/upload?'
+    upload: prefix+ 'media/upload?'
 }
 function Wechat (opts){
     var that = this;
@@ -108,7 +108,7 @@ console.log('filepath',filepath)
                 var url = api.upload + '&access_token=' + data.access_token + '&type=' + type
                 request({method:'POST', url:url, formData: form, json:true}).then(function(response){
                     console.log('response',response)
-                    var _data = response[1];
+                    var _data = response.body;
                     console.log('response2',_data)
                     if(_data){
                         resolve(_data)
